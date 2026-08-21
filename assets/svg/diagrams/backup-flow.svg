@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" width="100%" height="100%" role="img" aria-label="Backup For You Execution Flow Diagram">
+  <defs>
+    <style>
+      .title-t { fill: #F1F0EB; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; }
+      .sub-t { fill: #8A8B87; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+      .acc-t { fill: #D6FF4B; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
+      .tag-t { fill: #6F706C; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    </style>
+    <marker id="b-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#292B2D" />
+    </marker>
+  </defs>
+
+  <!-- Step 1: Config & Input -->
+  <g transform="translate(30, 40)">
+    <rect width="150" height="95" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">1. CLI &amp; Config</text>
+    <text x="14" y="46" class="sub-t">YAML Configuration</text>
+    <text x="14" y="64" class="tag-t">Click CLI · PyYAML</text>
+    <text x="14" y="80" class="tag-t">--dry-run validation</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 180 87 L 220 87" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#b-arr)" />
+
+  <!-- Step 2: Archive & Compression -->
+  <g transform="translate(225, 40)">
+    <rect width="165" height="95" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">2. Archive Engine</text>
+    <text x="14" y="46" class="sub-t">Folder Packaging</text>
+    <text x="14" y="64" class="sub-t">.tar.gz Compression</text>
+    <text x="14" y="82" class="tag-t">Python tarfile module</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 390 87 L 430 87" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#b-arr)" />
+
+  <!-- Step 3: Lifecycle & Rotation -->
+  <g transform="translate(435, 40)">
+    <rect width="170" height="95" rx="6" ry="6" fill="#1B1D1F" stroke="#D6FF4B" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">3. Rotation Engine</text>
+    <text x="14" y="46" class="acc-t">Retention Policy</text>
+    <text x="14" y="64" class="sub-t">Prune Expired Archives</text>
+    <text x="14" y="82" class="tag-t">Maintain N Daily/Weekly</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 605 87 L 645 87" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#b-arr)" />
+
+  <!-- Step 4: S3 Upload -->
+  <g transform="translate(650, 40)">
+    <rect width="240" height="95" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">4. Multi-Cloud Storage</text>
+    <text x="14" y="46" class="sub-t">Amazon S3 Integration</text>
+    <text x="14" y="64" class="sub-t">S3-Compatible Endpoints</text>
+    <text x="14" y="82" class="tag-t">Boto3 · Multipart / MD5 verify</text>
+  </g>
+
+  <!-- Branch down from S3 to Logging & Webhooks -->
+  <path d="M 770 135 L 770 190" fill="none" stroke="#292B2D" stroke-width="1.5" />
+  <path d="M 770 190 L 520 190 L 520 220" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#b-arr)" />
+  <path d="M 770 190 L 770 220" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#b-arr)" />
+
+  <!-- Step 5: Logging -->
+  <g transform="translate(430, 225)">
+    <rect width="180" height="80" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">Structured Logging</text>
+    <text x="14" y="46" class="sub-t">Console + File Output</text>
+    <text x="14" y="64" class="tag-t">Timestamps &amp; Bytes Logged</text>
+  </g>
+
+  <!-- Step 6: Webhooks -->
+  <g transform="translate(670, 225)">
+    <rect width="220" height="80" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="14" y="24" class="title-t">Webhook Alerts</text>
+    <text x="14" y="46" class="sub-t">Slack &amp; Discord Notifications</text>
+    <text x="14" y="64" class="tag-t">Requests · Async Status Payloads</text>
+  </g>
+
+</svg>

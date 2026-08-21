@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%" role="img" aria-label="ResumeIQ System Architecture Diagram">
+  <defs>
+    <style>
+      .title-text { fill: #F1F0EB; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; }
+      .sub-text { fill: #8A8B87; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+      .accent-text { fill: #D6FF4B; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
+      .tag-text { fill: #6F706C; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#292B2D" />
+    </marker>
+    <marker id="arr-accent" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#D6FF4B" />
+    </marker>
+  </defs>
+
+  <!-- Input Layer: Resume Ingestion -->
+  <g transform="translate(30, 40)">
+    <rect width="180" height="70" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="16" y="28" class="title-text">Resume Ingestion</text>
+    <text x="16" y="48" class="sub-text">PDF / DOCX Parsers</text>
+    <text x="16" y="62" class="tag-text">PyPDF2 · python-docx</text>
+  </g>
+
+  <!-- Input Layer: Job Description -->
+  <g transform="translate(30, 140)">
+    <rect width="180" height="70" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="16" y="28" class="title-text">Job Description</text>
+    <text x="16" y="48" class="sub-text">Target Role &amp; Schema</text>
+    <text x="16" y="62" class="tag-text">Raw Text Normalizer</text>
+  </g>
+
+  <!-- Connection Lines from Ingestion to Extraction -->
+  <path d="M 210 75 L 260 125" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 210 175 L 260 125" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+
+  <!-- Extraction & Taxonomy -->
+  <g transform="translate(265, 85)">
+    <rect width="210" height="85" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="16" y="26" class="title-text">Skill Taxonomy Engine</text>
+    <text x="16" y="46" class="sub-text">14-Domain Taxonomy</text>
+    <text x="16" y="60" class="sub-text">Alias Canonicalization</text>
+    <text x="16" y="74" class="tag-text">ALIAS_INDEX · OR-Groups</text>
+  </g>
+
+  <!-- Line to Hybrid Engine -->
+  <path d="M 475 127 L 525 127" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+
+  <!-- Hybrid Similarity -->
+  <g transform="translate(530, 75)">
+    <rect width="210" height="105" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="16" y="26" class="title-text">Hybrid Similarity Engine</text>
+    <text x="16" y="48" class="sub-text">TF-IDF Vectorizer (30%)</text>
+    <text x="16" y="66" class="sub-text">SentenceTransformer (70%)</text>
+    <text x="16" y="82" class="tag-text">all-MiniLM-L6-v2 · PyTorch</text>
+    <text x="16" y="96" class="tag-text">Cosine Similarity Space</text>
+  </g>
+
+  <!-- Line to Scoring Core -->
+  <path d="M 635 180 L 635 235" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+
+  <!-- Deterministic ATS Core -->
+  <g transform="translate(510, 240)">
+    <rect width="250" height="110" rx="6" ry="6" fill="#1B1D1F" stroke="#D6FF4B" stroke-width="1.5" />
+    <text x="18" y="28" class="title-text">Deterministic 50/30/20 Engine</text>
+    <text x="18" y="52" class="accent-text">50% Skill Match</text>
+    <text x="18" y="70" class="accent-text">30% Text Similarity</text>
+    <text x="18" y="88" class="accent-text">20% Experience &amp; Education</text>
+    <text x="18" y="103" class="tag-text">Deterministic Math · Zero Drift</text>
+  </g>
+
+  <!-- Lines to Output Services -->
+  <path d="M 760 295 L 800 295" fill="none" stroke="#292B2D" stroke-width="1.5" />
+  <path d="M 800 295 L 800 125 L 820 125" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 800 295 L 820 295" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+  <path d="M 800 295 L 800 410 L 820 410" fill="none" stroke="#292B2D" stroke-width="1.5" marker-end="url(#arr)" />
+
+  <!-- Output Nodes -->
+  <g transform="translate(825, 90)">
+    <rect width="80" height="70" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="10" y="28" class="title-text">ReportLab</text>
+    <text x="10" y="48" class="sub-text">PDF Export</text>
+  </g>
+
+  <g transform="translate(825, 260)">
+    <rect width="80" height="70" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="10" y="28" class="title-text">Gap Analysis</text>
+    <text x="10" y="48" class="sub-text">Roadmap</text>
+  </g>
+
+  <g transform="translate(825, 375)">
+    <rect width="80" height="70" rx="6" ry="6" fill="#151617" stroke="#292B2D" stroke-width="1.5" />
+    <text x="10" y="28" class="title-text">Career Path</text>
+    <text x="10" y="48" class="sub-text">Role Match</text>
+  </g>
+
+  <!-- Optional AI Enhancement Branch (Clearly Separated) -->
+  <g transform="translate(30, 270)">
+    <rect width="380" height="150" rx="6" ry="6" fill="#151617" stroke="#D6FF4B" stroke-width="1.5" stroke-dasharray="4 3" />
+    <text x="18" y="28" class="accent-text">[OPTIONAL] AI Enhancement Layer</text>
+    <text x="18" y="52" class="title-text">Non-Hallucinated Bullet Optimizer</text>
+    <text x="18" y="72" class="sub-text">Local Model: Qwen2.5-0.5B GGUF (llama.cpp)</text>
+    <text x="18" y="90" class="sub-text">Cloud Fallback: Google Gemini API (1.5 Flash)</text>
+    <text x="18" y="110" class="tag-text">Schema Validation · Bounded Prompts</text>
+    <text x="18" y="130" class="tag-text">Separated from deterministic math core</text>
+  </g>
+
+  <!-- Connection to Core/Downstream -->
+  <path d="M 410 345 L 510 345" fill="none" stroke="#D6FF4B" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arr-accent)" />
+
+</svg>

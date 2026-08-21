@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backup For You Case Study — Vaibhav Pandey</title>
+  <meta name="description" content="Engineering case study of Backup For You: Python cloud backup automation CLI with Amazon S3 integration, archive retention, YAML configs, and webhook alerts.">
+  <link rel="canonical" href="https://vitthal434.github.io/Vaibhav-Portfolio/projects/backup-for-you.html">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#case-main" class="skip-link">Skip to content</a>
+
+  <!-- Minimal Header -->
+  <header class="header" role="banner">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="Vaibhav Pandey Home">
+        <span>VP / VAIBHAV</span>
+        <span class="nav-brand-status">Engineering Case Study</span>
+      </a>
+
+      <a href="../index.html#projects" class="inline-link">
+        <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true" width="14" height="14">
+        All Projects
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="case-main" class="container-narrow">
+
+    <!-- Hero / Header -->
+    <section class="case-study-hero" aria-label="Project Overview">
+      <a href="../index.html#projects" class="back-nav">
+        <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true" width="14" height="14">
+        Back to Portfolio
+      </a>
+
+      <div class="case-study-header">
+        <span class="section-tag">Case Study · Cloud Infrastructure &amp; CLI</span>
+        <h1 class="case-study-title">Backup For You — Cloud Backup Automation CLI</h1>
+        <p class="case-study-lead">
+          A modular, open-source Python CLI utility packaged with pyproject.toml that automates archive compression, retention policies, and upload of directory backups to Amazon S3 and S3-compatible cloud storage providers.
+        </p>
+
+        <div class="case-study-actions">
+          <a href="https://github.com/Vitthal434/backup_for_you" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <img src="../assets/svg/icons/github.svg" alt="" aria-hidden="true" width="16" height="16">
+            View Source on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="case-section" aria-labelledby="prob-title">
+      <h2 id="prob-title" class="case-section-title">The Engineering Problem</h2>
+      <p>
+        System backups in small to mid-scale engineering environments often face common operational hurdles:
+      </p>
+      <ul style="margin: 16px 0 16px 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li><strong>Unmanaged Storage Costs:</strong> Backups accumulate indefinitely without automated rotation policies, bloating cloud storage expenditure.</li>
+        <li><strong>Silent Failures:</strong> Scripts executing silently in cron jobs fail without alerting the engineering team when network timeouts or permission errors occur.</li>
+        <li><strong>Provider Lock-in:</strong> Many backup tools are strictly coupled to proprietary cloud SDKs rather than generic, S3-compatible APIs (such as MinIO, Wasabi, or DigitalOcean Spaces).</li>
+      </ul>
+      <p>
+        <strong>The Objective:</strong> Build a clean, declarative CLI utility in Python that manages the entire backup lifecycle — from local tarball compression and policy-driven rotation to multi-cloud S3 uploads and webhook notifications.
+      </p>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="case-section" aria-labelledby="arch-title">
+      <h2 id="arch-title" class="case-section-title">Execution Lifecycle Architecture</h2>
+      <p>
+        The tool processes backups through a modular, step-by-step pipeline ensuring data integrity at every stage.
+      </p>
+
+      <!-- Flow SVG Diagram -->
+      <div class="diagram-container">
+        <img src="../assets/svg/diagrams/backup-flow.svg" alt="Backup For You Execution Flow Diagram showing CLI input, archive compression, retention rotation, S3 upload, logging, and webhook alerts" style="width: 100%; height: auto;">
+      </div>
+
+      <h3 style="margin: 24px 0 12px; font-size: 1.125rem; color: var(--text-primary);">Pipeline Steps:</h3>
+      <ol style="margin-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li><strong>CLI &amp; Configuration:</strong> Parses command flags via <code>Click</code> and validates schema from <code>config.yaml</code> using <code>PyYAML</code>.</li>
+        <li><strong>Archive Creation &amp; Compression:</strong> Packages designated directories into timestamped <code>.tar.gz</code> archives via Python's <code>tarfile</code> module.</li>
+        <li><strong>Retention &amp; Rotation Engine:</strong> Evaluates retention limits (e.g. keep N most recent archives) and safely prunes expired snapshots.</li>
+        <li><strong>Multi-Cloud S3 Upload:</strong> Streams compressed archives to Amazon S3 or S3-compatible storage endpoints via <code>Boto3</code>.</li>
+        <li><strong>Structured Logging &amp; Alerts:</strong> Emits structured execution logs and dispatches asynchronous status payloads to Slack and Discord webhooks via <code>Requests</code>.</li>
+      </ol>
+    </section>
+
+    <!-- Key Engineering Decisions -->
+    <section class="case-section" aria-labelledby="decisions-title">
+      <h2 id="decisions-title" class="case-section-title">Key Engineering Decisions</h2>
+
+      <div class="decisions-grid">
+        <div class="decision-card">
+          <h3 class="decision-title">Declarative YAML Configuration</h3>
+          <p class="decision-desc">
+            Designed a schema-driven YAML configuration system. This allows operators to declare backup paths, storage buckets, endpoint URLs, and retention limits once, enabling effortless headless scheduling via cron or systemd.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">Pre-Flight Safety Validation (--dry-run)</h3>
+          <p class="decision-desc">
+            Implemented a dedicated <code>--dry-run</code> flag that verifies directory paths, checks storage credentials, and calculates expected archive sizes and rotation candidates without modifying local files or writing remote cloud bytes.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">Modular Storage Interface</h3>
+          <p class="decision-desc">
+            Structured the storage layer behind an abstract interface (<code>storage/base.py</code>). This decouples backup orchestration from the specific S3 backend (<code>storage/s3.py</code>), facilitating future multi-provider extensions.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">Multi-Platform Webhook Alerting</h3>
+          <p class="decision-desc">
+            Integrated failure and success notifications through standardized Slack and Discord webhook schemas, ensuring engineering teams receive immediate alerts with failure tracebacks if a scheduled run encounters network or storage faults.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI Showcase -->
+    <section class="case-section" aria-labelledby="cli-title">
+      <h2 id="cli-title" class="case-section-title">Command Line Interface Usage</h2>
+      <p>
+        Packaged using modern standard packaging (<code>pyproject.toml</code>) for clean CLI installation.
+      </p>
+
+      <div class="cli-preview-block" style="margin-top: 16px;">
+        <div><span class="cli-prompt">$</span> backup-for-you run --config config.yaml --dry-run</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Loading configuration from: config.yaml</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Executing in DRY-RUN mode. No remote changes will be applied.</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Scanning source directories: ['/var/log/app', '/var/data/db']</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Archive candidate created: backup_2026-08-22_120000.tar.gz</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Retention policy: max_backups=7 (Found 8 remote, 1 candidate marked for rotation)</div>
+        <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Remote target: s3://prod-backups-vault/daily/</div>
+        <div class="cli-log-success"><span class="cli-log-tag">[SUCCESS]</span> Dry-run completed successfully. All validations passed.</div>
+      </div>
+    </section>
+
+    <!-- Technology Stack Table -->
+    <section class="case-section" aria-labelledby="stack-title">
+      <h2 id="stack-title" class="case-section-title">Technology Specifications</h2>
+
+      <table class="tech-spec-table">
+        <thead>
+          <tr>
+            <th>Module / Role</th>
+            <th>Technology</th>
+            <th>Role in System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tech-name">CLI Framework</td>
+            <td class="tech-role">Click</td>
+            <td>Command line interface parsing, option validation, and help formatting</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Cloud Storage SDK</td>
+            <td class="tech-role">Boto3</td>
+            <td>Amazon S3 client connection, multipart streaming, and bucket operations</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Configuration Engine</td>
+            <td class="tech-role">PyYAML</td>
+            <td>Declarative YAML configuration parsing and path schema validation</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Archive Engine</td>
+            <td class="tech-role">Python tarfile / gzip</td>
+            <td>High-ratio directory compression into standard `.tar.gz` format</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Alerts &amp; Webhooks</td>
+            <td class="tech-role">Requests</td>
+            <td>HTTP POST payload dispatching to Slack and Discord webhook URLs</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Packaging Standard</td>
+            <td class="tech-role">pyproject.toml</td>
+            <td>Modern PEP 517/518 build metadata and CLI entry-point configuration</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Next Case Study Nav -->
+    <section class="case-section" style="border-bottom: 1px solid var(--border); margin-bottom: 60px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <a href="./resumeiq.html" class="case-study-cta">
+          <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true">
+          Previous: ResumeIQ ATS Evaluator
+        </a>
+        <a href="../index.html#projects" class="inline-link">
+          Back to Portfolio
+          <img src="../assets/svg/icons/arrow-right.svg" alt="" aria-hidden="true" width="14" height="14">
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-container">
+      <p class="footer-text">
+        &copy; 2026 Vaibhav Pandey. Engineered with Semantic HTML, Modern CSS &amp; JavaScript.
+      </p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Vitthal434" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vaibhav-pandey-518268335/" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a></li>
+        <li><a href="mailto:vaibhavpandey1567@gmail.com" class="social-link">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Client Script -->
+  <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>

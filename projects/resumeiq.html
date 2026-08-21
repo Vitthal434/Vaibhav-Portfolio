@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumeIQ Case Study — Vaibhav Pandey</title>
+  <meta name="description" content="Engineering case study of ResumeIQ: Deterministic ATS scoring engine built with Python, Flask, SentenceTransformers, local Qwen2.5 GGUF inference, and a 163-test CI suite.">
+  <link rel="canonical" href="https://vitthal434.github.io/Vaibhav-Portfolio/projects/resumeiq.html">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#case-main" class="skip-link">Skip to content</a>
+
+  <!-- Minimal Header -->
+  <header class="header" role="banner">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-brand" aria-label="Vaibhav Pandey Home">
+        <span>VP / VAIBHAV</span>
+        <span class="nav-brand-status">Engineering Case Study</span>
+      </a>
+
+      <a href="../index.html#projects" class="inline-link">
+        <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true" width="14" height="14">
+        All Projects
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="case-main" class="container-narrow">
+
+    <!-- Hero / Header -->
+    <section class="case-study-hero" aria-label="Project Overview">
+      <a href="../index.html#projects" class="back-nav">
+        <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true" width="14" height="14">
+        Back to Portfolio
+      </a>
+
+      <div class="case-study-header">
+        <span class="section-tag">Case Study · Applied AI &amp; Backend</span>
+        <h1 class="case-study-title">ResumeIQ — Deterministic ATS Resume Evaluator</h1>
+        <p class="case-study-lead">
+          A production-grade Applicant Tracking System (ATS) evaluation engine engineered with Flask and Python. Utilizes a deterministic 50/30/20 formula to evaluate skill taxonomy alignment, lexical/semantic similarity, and experience alignment with an optional local AI inference layer.
+        </p>
+
+        <div class="case-study-actions">
+          <a href="https://resumeiq-6baf.onrender.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <img src="../assets/svg/icons/external-link.svg" alt="" aria-hidden="true" width="16" height="16">
+            Try Live Demo
+          </a>
+          <a href="https://github.com/Vitthal434/ATS-Resume-Evaluator" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            <img src="../assets/svg/icons/github.svg" alt="" aria-hidden="true" width="16" height="16">
+            View Source on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="case-section" aria-labelledby="prob-title">
+      <h2 id="prob-title" class="case-section-title">The Engineering Problem</h2>
+      <p>
+        Traditional Applicant Tracking Systems (ATS) typically suffer from two distinct failure modes:
+      </p>
+      <ul style="margin: 16px 0 16px 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li><strong>Naive Lexical Matching:</strong> Simple keyword scanners penalize qualified candidates due to vocabulary mismatches, abbreviations (e.g. "K8s" vs "Kubernetes"), or minor formatting discrepancies.</li>
+        <li><strong>Unbounded LLM Scorers:</strong> Pure generative AI evaluators frequently hallucinate scores, drift across runs, and cannot provide predictable, auditable criteria for hiring teams.</li>
+      </ul>
+      <p>
+        <strong>The Objective:</strong> Engineer an intelligent, deterministic evaluation engine that combines multi-domain skill taxonomy normalization and dense neural embeddings for accurate scoring, while isolating generative LLM capabilities strictly to optional, non-hallucinated feedback tasks.
+      </p>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="case-section" aria-labelledby="arch-title">
+      <h2 id="arch-title" class="case-section-title">System Architecture</h2>
+      <p>
+        ResumeIQ decouples the deterministic math engine from document processing and the optional AI inference tier.
+      </p>
+
+      <!-- Architecture SVG Diagram -->
+      <div class="diagram-container">
+        <img src="../assets/svg/diagrams/resumeiq-architecture.svg" alt="ResumeIQ System Architecture Diagram showing ingestion, taxonomy matching, hybrid similarity, and scoring tiers" style="width: 100%; height: auto;">
+      </div>
+
+      <h3 style="margin: 24px 0 12px; font-size: 1.125rem; color: var(--text-primary);">Execution Flow Breakdown:</h3>
+      <ol style="margin-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+        <li><strong>Upload &amp; Extraction:</strong> Ingests PDF/DOCX resumes via <code>PyPDF2</code> and <code>python-docx</code>, normalizing raw text streams.</li>
+        <li><strong>14-Domain Skill Taxonomy:</strong> Evaluates text against a 14-domain taxonomy, mapping abbreviations and synonyms to canonical tokens via an indexed alias registry.</li>
+        <li><strong>Hybrid Similarity Computation:</strong> Combines 30% lexical TF-IDF n-gram vectorization with 70% dense 384-dimensional neural embeddings using <code>SentenceTransformer (all-MiniLM-L6-v2)</code>.</li>
+        <li><strong>Deterministic Scoring:</strong> Computes the weighted compatibility score: <strong>50% Skill Match</strong> + <strong>30% Text Similarity</strong> + <strong>20% Experience Alignment</strong>.</li>
+        <li><strong>Reporting:</strong> Generates formatted multi-page PDF evaluation reports dynamically using <code>ReportLab</code>.</li>
+        <li><strong>Optional AI Layer:</strong> Employs a local <code>Qwen2.5-0.5B-Instruct-GGUF</code> model via <code>llama-cpp-python</code> with an automated cloud fallback to Google Gemini 1.5 Flash for non-hallucinated bullet point rewrites.</li>
+      </ol>
+    </section>
+
+    <!-- Key Engineering Decisions -->
+    <section class="case-section" aria-labelledby="decisions-title">
+      <h2 id="decisions-title" class="case-section-title">Key Engineering Decisions</h2>
+
+      <div class="decisions-grid">
+        <div class="decision-card">
+          <h3 class="decision-title">Deterministic Math vs. Generative Scoring</h3>
+          <p class="decision-desc">
+            Scoring calculations are 100% deterministic arithmetic. The same resume and job description will always produce the exact same score. The LLM is prohibited from setting scores, preventing score drift and hallucinations.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">Hybrid 30/70 Similarity Model</h3>
+          <p class="decision-desc">
+            Pure neural embeddings can miss exact technical keywords, while pure TF-IDF misses contextual synonyms. Pairing 30% TF-IDF with 70% dense SentenceTransformer embeddings provides balanced semantic and lexical alignment.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">Local Quantized LLM Inference</h3>
+          <p class="decision-desc">
+            Integrated <code>llama-cpp-python</code> to run a 4-bit quantized Qwen2.5 GGUF model directly on the CPU. This enables offline AI optimizations with zero API token costs, falling back to Gemini only when configured.
+          </p>
+        </div>
+
+        <div class="decision-card">
+          <h3 class="decision-title">ReportLab Dynamic PDF Generation</h3>
+          <p class="decision-desc">
+            Implemented programmatic vector-based PDF generation rather than browser headless printing (e.g. Puppeteer), keeping the container footprint lightweight and eliminating heavy headless browser dependencies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Stack Table -->
+    <section class="case-section" aria-labelledby="stack-title">
+      <h2 id="stack-title" class="case-section-title">Technology Specifications</h2>
+
+      <table class="tech-spec-table">
+        <thead>
+          <tr>
+            <th>Layer / Category</th>
+            <th>Technology</th>
+            <th>Role in System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tech-name">Backend Runtime</td>
+            <td class="tech-role">Python 3.12 / Flask / Waitress</td>
+            <td>REST API routing, request validation, multi-threaded WSGI serving</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Semantic NLP</td>
+            <td class="tech-role">Sentence-Transformers (`all-MiniLM-L6-v2`)</td>
+            <td>384-dimensional dense neural embeddings for semantic similarity</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Lexical Vectorizer</td>
+            <td class="tech-role">scikit-learn (TF-IDF)</td>
+            <td>Sublinear n-gram lexical vector matching</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Local AI Inference</td>
+            <td class="tech-role">llama-cpp-python (Qwen2.5 GGUF)</td>
+            <td>CPU-optimized quantized local LLM for bullet point optimization</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Cloud AI Fallback</td>
+            <td class="tech-role">Google Gemini 1.5 Flash API</td>
+            <td>Optional cloud provider for schema parsing and optimization</td>
+          </tr>
+          <tr>
+            <td class="tech-name">Document Processing</td>
+            <td class="tech-role">PyPDF2 · python-docx · ReportLab</td>
+            <td>PDF/DOCX extraction and programmatic multi-page PDF generation</td>
+          </tr>
+          <tr>
+            <td class="tech-name">DevOps &amp; CI</td>
+            <td class="tech-role">Docker · GitHub Actions CI</td>
+            <td>Containerized non-root execution (`appuser`) and 163 automated CI tests</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Testing & CI -->
+    <section class="case-section" aria-labelledby="qa-title">
+      <h2 id="qa-title" class="case-section-title">Testing &amp; Quality Assurance</h2>
+      <p>
+        To ensure mathematical reproducibility and prevent regression across scoring updates, ResumeIQ maintains a comprehensive test suite executed automatically on every commit via GitHub Actions.
+      </p>
+
+      <div class="metrics-row" style="margin-top: 20px;">
+        <div class="metric-item">
+          <span class="metric-val">163 Unit Tests</span>
+          <span class="metric-label">100% Passing in CI</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-val">13 Test Modules</span>
+          <span class="metric-label">Parsers, Matchers, Gap Analysis</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-val">Synthetic Datasets</span>
+          <span class="metric-label">Benchmark Accuracy Verification</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Case Study Nav -->
+    <section class="case-section" style="border-bottom: 1px solid var(--border); margin-bottom: 60px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <a href="../index.html#projects" class="inline-link">
+          <img src="../assets/svg/icons/arrow-left.svg" alt="" aria-hidden="true" width="14" height="14">
+          Back to Portfolio
+        </a>
+        <a href="./backup-for-you.html" class="case-study-cta">
+          Next: Backup For You CLI Tool
+          <img src="../assets/svg/icons/arrow-right.svg" alt="" aria-hidden="true">
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-container">
+      <p class="footer-text">
+        &copy; 2026 Vaibhav Pandey. Engineered with Semantic HTML, Modern CSS &amp; JavaScript.
+      </p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Vitthal434" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vaibhav-pandey-518268335/" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a></li>
+        <li><a href="mailto:vaibhavpandey1567@gmail.com" class="social-link">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Client Script -->
+  <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>

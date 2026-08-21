@@ -1,20 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaibhav Pandey — Backend Developer &amp; AI Engineer</title>
+  <meta name="description" content="Portfolio of Vaibhav Pandey — Fourth-year IT engineering student specializing in Python backend engineering, deterministic NLP scoring engines, cloud automation tools (AWS S3), and containerized CI/CD workflows.">
+  <link rel="canonical" href="https://vitthal434.github.io/Vaibhav-Portfolio/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vitthal434.github.io/Vaibhav-Portfolio/">
+  <meta property="og:title" content="Vaibhav Pandey — Backend Developer &amp; AI Engineer">
+  <meta property="og:description" content="Fourth-year IT engineering student building deterministic backend systems, applied AI/NLP pipelines, and cloud automation tools.">
+  <meta property="og:site_name" content="Vaibhav Pandey Portfolio">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vaibhav Pandey — Backend Developer &amp; AI Engineer">
+  <meta name="twitter:description" content="Fourth-year IT engineering student building deterministic backend systems, applied AI/NLP pipelines, and cloud automation tools.">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vaibhav Pandey",
+    "jobTitle": "Backend Developer & AI Engineer",
+    "url": "https://vitthal434.github.io/Vaibhav-Portfolio/",
+    "sameAs": [
+      "https://github.com/Vitthal434",
+      "https://www.linkedin.com/in/vaibhav-pandey-518268335/"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Marathwada Mitra Mandal College of Engineering"
+    },
+    "knowsAbout": [
+      "Python",
+      "Flask",
+      "Applied NLP",
+      "Sentence-Transformers",
+      "AWS S3",
+      "Docker",
+      "CI/CD",
+      "MySQL"
+    ]
+  }
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <h1>Vaibhav Pandey's Portfolio</h1>
-    <h2>I'm a Web Developer</h2>
-    <hr>
-    <h3><a href="./public/movie-ranking.html">Anime Ranking Project</a><br><br></h3>
-    <img height="300" width="600" src="./assets/images/movie.png"/><br><br>
-    <h3><a href="./public/birthday-invite.html">Birthday Invite Project</a><br><br></h3>
-    <img height="400" width="600" src="./assets/images/birthday.png"/><br><br>
-    <hr>
-    <h3><a href="./public/about.html">About Me</a><br><br></h3>
-    <h3><a href="./public/contact.html">Contact Me</a><br></h3>
+
+  <!-- Accessibility Skip to Main Content -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <header class="header" role="banner">
+    <div class="container nav-container">
+      <a href="./index.html" class="nav-brand" aria-label="Vaibhav Pandey Home">
+        <span>VP / VAIBHAV</span>
+        <span class="nav-brand-status">Backend · AI/ML · Cloud</span>
+      </a>
+
+      <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        Menu
+      </button>
+
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a href="./assets/docs/resume.pdf" class="nav-cta" target="_blank" rel="noopener noreferrer" download="Vaibhav_Pandey_Resume.pdf">
+              Resume <img src="./assets/svg/icons/download.svg" alt="" aria-hidden="true" width="14" height="14">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="section hero-section" aria-label="Introduction">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span class="hero-tag-dot" aria-hidden="true"></span>
+            <span>Fourth-Year IT Engineering Student · MMCOE</span>
+          </div>
+          <h1 class="hero-title">VAIBHAV PANDEY</h1>
+          <p class="hero-subtitle">Backend Developer &amp; AI Engineer</p>
+          <p class="hero-bio">
+            I engineer deterministic backend services, applied NLP pipelines, and cloud automation tooling with Python. Focused on algorithmic scoring accuracy, local LLM inference layers, containerized deployments, and robust test suites.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <a href="./assets/docs/resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" download="Vaibhav_Pandey_Resume.pdf">
+              <img src="./assets/svg/icons/download.svg" alt="" aria-hidden="true" width="16" height="16">
+              Download Resume
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/Vitthal434" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+              <img src="./assets/svg/icons/github.svg" alt="" aria-hidden="true">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/vaibhav-pandey-518268335/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+              <img src="./assets/svg/icons/linkedin.svg" alt="" aria-hidden="true">
+              LinkedIn
+            </a>
+            <a href="mailto:vaibhavpandey1567@gmail.com" class="social-link" aria-label="Email Vaibhav">
+              <img src="./assets/svg/icons/email.svg" alt="" aria-hidden="true">
+              Email
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal Profile Card Visual -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+              </div>
+              <span class="terminal-title">vaibhav@dev: ~</span>
+            </div>
+            <div class="terminal-body">
+              <div class="term-line">
+                <span class="term-cmd">$</span>
+                <span class="term-val">profile --summary</span>
+              </div>
+              <div class="term-divider"></div>
+              <div class="term-line">
+                <span class="term-key">role</span>
+                <span class="term-arrow">→</span>
+                <span class="term-val accent">Backend Developer</span>
+              </div>
+              <div class="term-line">
+                <span class="term-key">focus</span>
+                <span class="term-arrow">→</span>
+                <span class="term-val">Applied AI / NLP &amp; Systems</span>
+              </div>
+              <div class="term-line">
+                <span class="term-key">cloud</span>
+                <span class="term-arrow">→</span>
+                <span class="term-val">AWS S3 · Boto3</span>
+              </div>
+              <div class="term-line">
+                <span class="term-key">stack</span>
+                <span class="term-arrow">→</span>
+                <span class="term-val">Python / Flask / MySQL</span>
+              </div>
+              <div class="term-line">
+                <span class="term-key">shipping</span>
+                <span class="term-arrow">→</span>
+                <span class="term-val">Docker · GitHub Actions CI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Projects Section -->
+    <section id="projects" class="section reveal-on-scroll" aria-label="Selected Projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured Work</span>
+          <h2 class="section-title">Selected Engineering Projects</h2>
+          <p class="section-description">
+            Production-grade systems demonstrating deterministic algorithms, applied NLP, cloud infrastructure automation, and automated test coverage.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1: ResumeIQ -->
+          <article class="project-card" aria-labelledby="p1-title">
+            <div class="project-meta-top">
+              <span class="project-number">01 / PRODUCTION SYSTEM</span>
+              <span class="project-category">Flask · NLP · Docker</span>
+            </div>
+            <h3 id="p1-title" class="project-name">ResumeIQ — ATS Resume Evaluator</h3>
+            <p class="project-desc">
+              Engineered a deterministic ATS scoring engine in Flask/Python that evaluates resumes against job descriptions with a weighted 50/30/20 formula. Features a 14-domain skill taxonomy, hybrid lexical (TF-IDF) + dense neural semantic embeddings (SentenceTransformer), ReportLab PDF export, and an optional non-hallucinated AI enhancement layer (local Qwen2.5 GGUF via llama.cpp with Google Gemini API fallback). Containerized and tested with a 163-test CI suite.
+            </p>
+
+            <!-- Metrics Row -->
+            <div class="metrics-row">
+              <div class="metric-item">
+                <span class="metric-val">50/30/20</span>
+                <span class="metric-label">Weighted Scoring Formula</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">14+ Domains</span>
+                <span class="metric-label">Skill Taxonomy &amp; Aliases</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">163 Tests</span>
+                <span class="metric-label">GitHub Actions CI Suite</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">Dual AI Layer</span>
+                <span class="metric-label">Local GGUF + Gemini Fallback</span>
+              </div>
+            </div>
+
+            <!-- 50/30/20 Formula Visual Bar -->
+            <div class="formula-visual" aria-label="ATS Scoring Weighting Breakdown">
+              <div class="formula-header">
+                <span>DETERMINISTIC ATS SCORING WEIGHTS</span>
+                <span>100% TOTAL</span>
+              </div>
+              <div class="formula-bar">
+                <div class="formula-segment-50" title="50% Skill Match"></div>
+                <div class="formula-segment-30" title="30% Hybrid Text Similarity"></div>
+                <div class="formula-segment-20" title="20% Experience Alignment"></div>
+              </div>
+              <div class="formula-legend">
+                <div class="legend-item">
+                  <span class="legend-dot accent"></span>
+                  <span>50% Skill Match (Taxonomy &amp; Aliases)</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot secondary"></span>
+                  <span>30% Hybrid Similarity (TF-IDF + Embeddings)</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot muted"></span>
+                  <span>20% Experience &amp; Education</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Tags -->
+            <ul class="tech-tag-list" aria-label="Technologies used in ResumeIQ">
+              <li class="tech-tag">Python</li>
+              <li class="tech-tag">Flask</li>
+              <li class="tech-tag">Sentence-Transformers</li>
+              <li class="tech-tag">scikit-learn</li>
+              <li class="tech-tag">llama-cpp-python</li>
+              <li class="tech-tag">Google Gemini API</li>
+              <li class="tech-tag">ReportLab</li>
+              <li class="tech-tag">Docker</li>
+              <li class="tech-tag">Waitress</li>
+              <li class="tech-tag">GitHub Actions</li>
+            </ul>
+
+            <!-- Project Links -->
+            <div class="project-footer-links">
+              <div class="project-source-links">
+                <a href="https://resumeiq-6baf.onrender.com" class="inline-link" target="_blank" rel="noopener noreferrer">
+                  <img src="./assets/svg/icons/external-link.svg" alt="" aria-hidden="true">
+                  Live Demo
+                </a>
+                <a href="https://github.com/Vitthal434/ATS-Resume-Evaluator" class="inline-link" target="_blank" rel="noopener noreferrer">
+                  <img src="./assets/svg/icons/github.svg" alt="" aria-hidden="true">
+                  Source Code
+                </a>
+              </div>
+              <a href="./projects/resumeiq.html" class="case-study-cta">
+                Read Case Study
+                <img src="./assets/svg/icons/arrow-right.svg" alt="" aria-hidden="true">
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: Backup For You -->
+          <article class="project-card" aria-labelledby="p2-title">
+            <div class="project-meta-top">
+              <span class="project-number">02 / CLI TOOL &amp; INFRASTRUCTURE</span>
+              <span class="project-category">Python · AWS S3 · Automation</span>
+            </div>
+            <h3 id="p2-title" class="project-name">Backup For You — Cloud Backup Automation Tool</h3>
+            <p class="project-desc">
+              Built a modular, open-source Python CLI tool (packaged with pyproject.toml) that automates archive compression, retention policies, and upload of directory backups to Amazon S3 and S3-compatible cloud storage providers. Implemented declarative YAML configuration, dry-run safety mode, detailed logging, and Slack/Discord webhook alerts.
+            </p>
+
+            <!-- Metrics Row -->
+            <div class="metrics-row">
+              <div class="metric-item">
+                <span class="metric-val">Amazon S3</span>
+                <span class="metric-label">&amp; S3-Compatible APIs</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">Lifecycle Policy</span>
+                <span class="metric-label">Automatic Archive Rotation</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">--dry-run</span>
+                <span class="metric-label">Pre-Flight Safety Validation</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">Webhooks</span>
+                <span class="metric-label">Slack &amp; Discord Notifications</span>
+              </div>
+            </div>
+
+            <!-- Static CLI Preview Block -->
+            <div class="cli-preview-block" aria-label="CLI Terminal Command Preview">
+              <div><span class="cli-prompt">$</span> backup-for-you run --config config.yaml --dry-run</div>
+              <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Initializing Backup For You runner...</div>
+              <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Validating storage credentials (Amazon S3 endpoint)</div>
+              <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Archiving targets: /data/db_backups -> backup_2026-08-22.tar.gz</div>
+              <div class="cli-log-info"><span class="cli-log-tag">[INFO]</span> Retention policy: keeping 5 most recent snapshots (1 stale candidate pruned)</div>
+              <div class="cli-log-success"><span class="cli-log-tag">[SUCCESS]</span> Dry-run validated successfully. 0 bytes written to remote.</div>
+            </div>
+
+            <!-- Tech Tags -->
+            <ul class="tech-tag-list" aria-label="Technologies used in Backup For You">
+              <li class="tech-tag">Python 3.10+</li>
+              <li class="tech-tag">AWS S3</li>
+              <li class="tech-tag">Boto3</li>
+              <li class="tech-tag">Click</li>
+              <li class="tech-tag">PyYAML</li>
+              <li class="tech-tag">Requests</li>
+              <li class="tech-tag">pyproject.toml</li>
+            </ul>
+
+            <!-- Project Links -->
+            <div class="project-footer-links">
+              <div class="project-source-links">
+                <a href="https://github.com/Vitthal434/backup_for_you" class="inline-link" target="_blank" rel="noopener noreferrer">
+                  <img src="./assets/svg/icons/github.svg" alt="" aria-hidden="true">
+                  Source Code
+                </a>
+              </div>
+              <a href="./projects/backup-for-you.html" class="case-study-cta">
+                Read Case Study
+                <img src="./assets/svg/icons/arrow-right.svg" alt="" aria-hidden="true">
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="section reveal-on-scroll" aria-label="Technical Capabilities">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Capabilities</span>
+          <h2 class="section-title">Technical Skills &amp; Stack</h2>
+          <p class="section-description">
+            Core programming languages, frameworks, cloud automation tools, and foundational software engineering concepts.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+
+          <!-- Category 1: Languages -->
+          <div class="skill-category-card">
+            <div class="skill-card-header">
+              <h3 class="skill-category-title">Languages</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-pill">Python</li>
+              <li class="skill-pill">SQL (MySQL)</li>
+              <li class="skill-pill">C</li>
+              <li class="skill-pill">C++</li>
+              <li class="skill-pill">JavaScript</li>
+              <li class="skill-pill">HTML5 / CSS3</li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Backend & Cloud -->
+          <div class="skill-category-card">
+            <div class="skill-card-header">
+              <h3 class="skill-category-title">Backend &amp; Cloud</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-pill">Flask</li>
+              <li class="skill-pill">Waitress (WSGI)</li>
+              <li class="skill-pill">REST APIs</li>
+              <li class="skill-pill">Amazon S3</li>
+              <li class="skill-pill">AWS</li>
+              <li class="skill-pill">Docker</li>
+              <li class="skill-pill">Docker Compose</li>
+              <li class="skill-pill">GitHub Actions CI</li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Applied AI & NLP -->
+          <div class="skill-category-card">
+            <div class="skill-card-header">
+              <h3 class="skill-category-title">Applied AI &amp; NLP</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-pill">Sentence-Transformers</li>
+              <li class="skill-pill">scikit-learn (TF-IDF)</li>
+              <li class="skill-pill">Hugging Face</li>
+              <li class="skill-pill">PyTorch</li>
+              <li class="skill-pill">llama.cpp / GGUF</li>
+              <li class="skill-pill">Google Gemini API</li>
+            </ul>
+          </div>
+
+          <!-- Category 4: Tools & Libraries -->
+          <div class="skill-category-card">
+            <div class="skill-card-header">
+              <h3 class="skill-category-title">Tools &amp; Libraries</h3>
+            </div>
+            <ul class="skill-items-list">
+              <li class="skill-pill">Boto3</li>
+              <li class="skill-pill">Click</li>
+              <li class="skill-pill">PyYAML</li>
+              <li class="skill-pill">Requests</li>
+              <li class="skill-pill">PyPDF2</li>
+              <li class="skill-pill">python-docx</li>
+              <li class="skill-pill">ReportLab</li>
+              <li class="skill-pill">Git / GitHub</li>
+              <li class="skill-pill">VS Code</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section reveal-on-scroll" aria-label="Professional Experience">
+      <div class="container-narrow">
+        <div class="section-header">
+          <span class="section-tag">Work History</span>
+          <h2 class="section-title">Experience</h2>
+          <p class="section-description">
+            Industry internship experience delivering functional front-end interfaces and JavaScript features.
+          </p>
+        </div>
+
+        <div class="experience-timeline">
+          <div class="experience-card">
+            <div class="experience-header">
+              <div>
+                <h3 class="experience-role">Web Developer Intern</h3>
+                <span class="experience-company">Primathink Pvt. Ltd.</span>
+              </div>
+              <span class="experience-duration">45 Days Internship</span>
+            </div>
+            <ul class="experience-points">
+              <li>Developed and styled responsive web pages using HTML, CSS, and modern CSS frameworks, translating design requirements into functional front-end interfaces.</li>
+              <li>Built interactive web-page features using JavaScript, improving usability and user engagement.</li>
+              <li>Completed the internship with a certificate of completion, gaining practical exposure to front-end web development workflows.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section reveal-on-scroll" aria-label="Education &amp; Academics">
+      <div class="container-narrow">
+        <div class="section-header">
+          <span class="section-tag">Academic Background</span>
+          <h2 class="section-title">Education</h2>
+          <p class="section-description">
+            Academic qualifications and engineering foundations.
+          </p>
+        </div>
+
+        <div class="education-grid">
+          <!-- B.Tech -->
+          <div class="education-card featured">
+            <span class="edu-level">Undergraduate Degree</span>
+            <h3 class="edu-degree">B.Tech in Information Technology Engineering</h3>
+            <p class="edu-institution">Marathwada Mitra Mandal College of Engineering (MMCOE), Pune</p>
+            <div class="edu-meta">
+              <span>2023 – Present</span>
+              <span class="edu-score">GPA: 7.09 / 10 (through 6th Sem)</span>
+            </div>
+          </div>
+
+          <!-- HSC -->
+          <div class="education-card">
+            <span class="edu-level">Higher Secondary Certificate (XII)</span>
+            <h3 class="edu-degree">Science</h3>
+            <p class="edu-institution">Prakash College of Science</p>
+            <div class="edu-meta">
+              <span>2022</span>
+              <span class="edu-score">Score: 68.33%</span>
+            </div>
+          </div>
+
+          <!-- SSC -->
+          <div class="education-card">
+            <span class="edu-level">Secondary School Certificate (X)</span>
+            <h3 class="edu-degree">General Studies</h3>
+            <p class="edu-institution">Himalaya High School</p>
+            <div class="edu-meta">
+              <span>2020</span>
+              <span class="edu-score">Score: 84.00%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section reveal-on-scroll" aria-label="Contact Information">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Get in Touch</span>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-description">
+            Interested in backend development, AI engineering, or software engineering opportunities? Reach out directly.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Direct Channels -->
+          <div class="contact-info">
+            <ul class="contact-direct-list">
+              <li>
+                <a href="mailto:vaibhavpandey1567@gmail.com" class="contact-direct-item">
+                  <div class="contact-direct-icon">
+                    <img src="./assets/svg/icons/email.svg" alt="" aria-hidden="true">
+                  </div>
+                  <div>
+                    <span class="contact-direct-label">Direct Email</span>
+                    <p class="contact-direct-val">vaibhavpandey1567@gmail.com</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/vaibhav-pandey-518268335/" class="contact-direct-item" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-direct-icon">
+                    <img src="./assets/svg/icons/linkedin.svg" alt="" aria-hidden="true">
+                  </div>
+                  <div>
+                    <span class="contact-direct-label">LinkedIn</span>
+                    <p class="contact-direct-val">linkedin.com/in/vaibhav-pandey</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Vitthal434" class="contact-direct-item" target="_blank" rel="noopener noreferrer">
+                  <div class="contact-direct-icon">
+                    <img src="./assets/svg/icons/github.svg" alt="" aria-hidden="true">
+                  </div>
+                  <div>
+                    <span class="contact-direct-label">GitHub</span>
+                    <p class="contact-direct-val">github.com/Vitthal434</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Web3Forms Contact Form -->
+          <form class="contact-form" id="contact-form" novalidate>
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="16317d63-b4e1-4fc0-a719-13e2a1bad4c7">
+            <input type="hidden" name="subject" value="New Portfolio Contact Form Submission from Vaibhav-Portfolio">
+            <input type="hidden" name="from_name" value="Vaibhav Portfolio Contact">
+
+            <!-- Honeypot for spam protection -->
+            <input type="checkbox" name="botcheck" class="form-honeypot" tabindex="-1" autocomplete="off">
+
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name *</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Message *</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              Send Message
+            </button>
+
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-container">
+      <p class="footer-text">
+        &copy; 2026 Vaibhav Pandey. Engineered with Semantic HTML, Modern CSS &amp; JavaScript.
+      </p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Vitthal434" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/vaibhav-pandey-518268335/" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a></li>
+        <li><a href="mailto:vaibhavpandey1567@gmail.com" class="social-link">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Client Script -->
+  <script type="module" src="./assets/js/main.js"></script>
 </body>
 </html>
