@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vitthal434.github.io/Vaibhav-Portfolio/sitemap.xml
+Sitemap: https://vaibhav-portfolio-delta-two.vercel.app/sitemap.xml

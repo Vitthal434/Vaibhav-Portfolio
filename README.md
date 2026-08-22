@@ -3,7 +3,7 @@
 > **Backend Developer & AI Engineer**  
 > Fourth-year Information Technology Engineering student at Marathwada Mitra Mandal College of Engineering (MMCOE), Pune.
 
-Live Portfolio: [vitthal434.github.io/Vaibhav-Portfolio](https://vitthal434.github.io/Vaibhav-Portfolio/)
+Live Portfolio: [vaibhav-portfolio-delta-two.vercel.app](https://vaibhav-portfolio-delta-two.vercel.app/)
 
 ---
 
