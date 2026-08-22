@@ -47,27 +47,34 @@ Vaibhav-Portfolio/
 ## 💻 Local Development
 
 ### Prerequisites
+
 - Node.js (v18+)
 - npm
 
 ### 1. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 2. Start Local Development Server
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### 3. Build Production Bundle
+
 ```bash
 npm run build
 ```
+
 Generates optimized, minified production assets in the `dist/` directory.
 
 ### 4. Preview Production Build Locally
+
 ```bash
 npm run preview
 ```
@@ -83,5 +90,5 @@ The contact form is powered by [Web3Forms](https://web3forms.com) for secure, se
 ## 📬 Contact & Connect
 
 - **Email:** [vaibhavpandey1567@gmail.com](mailto:vaibhavpandey1567@gmail.com)
-- **LinkedIn:** [linkedin.com/in/vaibhav-pandey](https://www.linkedin.com/in/vaibhav-pandey-518268335/)
+- **LinkedIn:** [linkedin.com/in/vaibhav-pandey](https://www.linkedin.com/in/vaibhavpandey434/)
 - **GitHub:** [github.com/Vitthal434](https://github.com/Vitthal434)
